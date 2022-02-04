@@ -17,7 +17,7 @@ Navigate to this folder and launch the main node and ROS wrapper backend:
 roslaunch launch/dj.launch
 ```
 
-Connect a microphone to your computer, then prompt Vector (named Guido after the Cars character in this repo): "Hey Guido, play <song title> [by <artist name>]"
+Connect a microphone to your computer, then prompt Vector (named Guido after the Cars character in this repo): `"Hey Guido, play <song title> [by <artist name>]"`
 
 After several seconds, the song will begin playing!
 
