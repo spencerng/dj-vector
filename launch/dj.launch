@@ -1,0 +1,8 @@
+<launch>
+    <include file="$(find anki_vector_ros)/launch/vector_core.launch">
+        <arg name="camera" value="false"/>
+    </include>
+    <node name="speech_recognition" pkg="ros_vosk" type="vosk_node.py"/>
+    
+    <node name="dj_vector" pkg="dj_vector" output="screen" type="main.py"/>
+</launch>
