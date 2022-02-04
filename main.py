@@ -70,11 +70,6 @@ class DJVector:
 
             ydl.download([url])
 
-        # Convert song to vector format
-        # cmd = f"ffmpeg -i {self.assets_path}/song.wav -acodec pcm_s16le -ac 1 -ar 16000 {self.assets_path}/song_conv.wav"
-
-        # sp.run(cmd.split(" "))
-
     def cleanup(self):
         self.sound_pub.publish(f"{self.assets_path}/song_conv.wav")
         shutil.rmtree(self.assets_path)
@@ -90,6 +85,8 @@ class DJVector:
             self.anim_pub.publish("anim_wakeword_getin_01")
             self.try_play_music()
 
+    # TODO: Add queue functionality? Need to recognize when playback is finished,
+    # or perhaps leverage runtime metadata
     def try_play_music(self):
         results = self.recognizer.listen()
 
@@ -100,7 +97,7 @@ class DJVector:
             self.speech_pub.publish("Hmmm, did you ask me to play a song?")
         else:
             phrase = results.split("play")[-1]
-            self.speech_pub.publish(f"Searching for {phrase}")
+            self.speech_pub.publish(f"Searching for {phrase}. Just one moment!")
             self.download_song(phrase)
             time.sleep(0.5)
             self.sound_pub.publish(f"{self.assets_path}/song.wav")
